@@ -1,27 +1,653 @@
+<style>
+:root {
+    --primary: #2d6cdf;
+    --primary-dark: #1f4fa8;
+    --secondary: #f4f7fb;
+    --border: #dfe5ee;
+    --text: #263238;
+    --muted: #687582;
+    --success: #2e8b57;
+    --warning: #c98200;
+    --danger: #c0392b;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--secondary);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    border-radius: 14px;
+    padding: 45px 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(31, 79, 168, 0.18);
+}
+
+.hero h2 {
+    margin: 0 0 10px;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--white);
+}
+
+.hero p {
+    margin: 8px 0;
+    font-size: 17px;
+    opacity: 0.94;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.18);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 30px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 25px;
+}
+
+h3 {
+    color: var(--primary);
+    margin-top: 26px;
+}
+
+.card > h3:first-child {
+    margin-top: 0;
+}
+
+h4 {
+    color: var(--primary);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.toc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.toc a {
+    display: block;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.toc a:hover {
+    background: #eaf1ff;
+    text-decoration: none;
+}
+
+ul, ol {
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 7px;
+}
+
+.info,
+.success,
+.warning,
+.danger {
+    padding: 15px 18px;
+    border-radius: 8px;
+    margin: 18px 0;
+}
+
+.info {
+    background: #eef5ff;
+    border-left: 4px solid var(--primary);
+}
+
+.success {
+    background: #eef9f2;
+    border-left: 4px solid var(--success);
+}
+
+.warning {
+    background: #fff7e8;
+    border-left: 4px solid var(--warning);
+}
+
+.danger {
+    background: #fdeeee;
+    border-left: 4px solid var(--danger);
+}
+
+.steps {
+    counter-reset: steps;
+    list-style: none;
+    padding-left: 0;
+}
+
+.steps li {
+    counter-increment: steps;
+    position: relative;
+    padding: 14px 16px 14px 55px;
+    margin-bottom: 10px;
+    background: var(--secondary);
+    border-radius: 8px;
+}
+
+.steps li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 700;
+}
+
+code {
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #eef1f5;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.92em;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+th,
+td {
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: var(--secondary);
+    font-weight: 700;
+}
+
+.footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 35px;
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 15px 12px 40px;
+    }
+
+    .hero {
+        padding: 30px 24px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .card {
+        padding: 22px 20px;
+    }
+}
+</style>
+
 <div id="help-template" class="outer">
+
     <h1 class="head">Help:
         <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/wgdeveloper/admin/index.php"
            title="Back to the administration of wgDeveloper"> wgDeveloper <img src="<{xoAdminIcons 'home.png'}>"
-                                                                       alt="Back to the Administration of wgDeveloper">
+                                                                               alt="Back to the Administration of wgDeveloper">
         </a></h1>
-    <!-- -----Help Content ---------- -->
-    <h4 class="odd">Description</h4>
-    <p class="even">
-        The wgDeveloper module can be used to modules in XOOPS<br><br>
-    </p>
-    <h4 class="odd">Install/uninstall</h4>
-    <p class="even">
-No special measures necessary, follow the standard installation process and extract the wgdeveloper folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. <br><br>
-Detailed instructions on installing modules are available in the <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a>
-    </p>
-    <h4 class="odd">Features</h4>
-    <p class="even">
-        The ModuleBuilder module continues to expand, to get to the conditions to create modules, more and more sophisticated.<br>
-        For this reason, I invite all developers to report and send in svn any changes or additions to this module, so that we can jointly contribute to the development <br><br>
-    </p>
-    <h4 class="odd">Tutorial</h4>
-    <p class="even">
-        You can find a more detailed to this Video Tutorial <a href="https://www.youtube.com/watch?v=dg7zGFCopxY" rel="external">here</a>
-    </p>
-    <!-- -----Help Content ---------- -->
+
+    <div class="wrapper">
+
+        <header class="hero">
+            <h2>wgDeveloper</h2>
+            <p>Administration and development utilities for XOOPS</p>
+            <p>
+                Inspect and maintain your XOOPS installation with a database browser,
+                SQL tools and a language-file checker, directly from the administration area.
+            </p>
+            <span class="badge">XOOPS 2.7.3+</span>
+            <span class="badge">PHP 8.4+</span>
+        </header>
+
+        <section class="card">
+            <h3>Welcome</h3>
+            <p>
+                Welcome to the <strong>wgDeveloper</strong> help page.
+                This module brings a set of tools for inspecting and maintaining a XOOPS
+                installation into the administration area.
+            </p>
+            <p>
+                wgDeveloper is intended for site administrators and developers.
+                It does <strong>not</strong> provide a public-facing module page.
+            </p>
+            <div class="info">
+                The main areas of wgDeveloper are the <strong>database tools</strong> (table browser,
+                record editing and SQL editor) and the <strong>language-file checker</strong> for
+                finding unused or missing language constants in a module.
+            </div>
+            <div class="danger">
+                <strong>Warning:</strong>
+                The database tools work directly on your data. Always create a verified database
+                backup before changing, truncating or dropping anything.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Contents</h3>
+            <div class="toc">
+                <a href="#getting-started">Getting Started</a>
+                <a href="#dashboard">Dashboard</a>
+                <a href="#database">Database Tools</a>
+                <a href="#tables">Tables &amp; Columns</a>
+                <a href="#records">Records</a>
+                <a href="#sql">SQL Editor</a>
+                <a href="#language-checker">Language Checker</a>
+                <a href="#settings">Module Settings</a>
+                <a href="#permissions">Permissions &amp; Security</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#support">Support</a>
+            </div>
+        </section>
+
+        <section class="card" id="getting-started">
+            <h3>Getting Started</h3>
+            <p>
+                After installing wgDeveloper, open the module from the XOOPS
+                administration area.
+            </p>
+            <ol class="steps">
+                <li>Open <strong>Administration → Modules</strong>.</li>
+                <li>Open <strong>wgDeveloper</strong>.</li>
+                <li>Check the dashboard and the module settings.</li>
+                <li>Use the database tools or the language checker for your task.</li>
+                <li>Always create a backup before changing data.</li>
+            </ol>
+            <div class="success">
+                <strong>Recommended workflow:</strong>
+                Use the browsing and inspection functions first. Only edit, delete, truncate or drop
+                after you have checked the affected table and created a backup.
+            </div>
+        </section>
+
+        <section class="card" id="dashboard">
+            <h3>Dashboard</h3>
+            <p>
+                The administration dashboard is the starting point of the module and gives
+                quick access to all available tools.
+            </p>
+            <p>
+                Whether feedback information is displayed on the dashboard can be switched on or off
+                in the module settings.
+            </p>
+        </section>
+
+        <section class="card" id="database">
+            <h3>Database Tools</h3>
+            <p>
+                The database tools allow you to look into the database of your XOOPS installation
+                without an external tool.
+            </p>
+            <h4>Available functions</h4>
+            <ul>
+                <li><strong>List tables</strong> – show the database tables.</li>
+                <li><strong>Inspect columns</strong> – show the structure of a table.</li>
+                <li><strong>Browse records</strong> – list and view records of a table.</li>
+                <li><strong>Edit or delete records</strong> – change or remove single records.</li>
+                <li><strong>SQL editor</strong> – execute your own SQL statements.</li>
+                <li><strong>Truncate or drop tables</strong> – empty or remove complete tables.</li>
+            </ul>
+            <div class="warning">
+                <strong>Important:</strong>
+                Database changes can cause data loss or leave modules in an inconsistent state.
+                Prefer the administration functions of the respective module for routine
+                content management.
+            </div>
+        </section>
+
+        <section class="card" id="tables">
+            <h3>Tables &amp; Columns</h3>
+            <p>
+                The table list shows the tables of the database. For each table you can open
+                the column overview.
+            </p>
+            <p>The column overview contains the following information:</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Information</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Type</strong></td>
+                        <td>The data type of the column.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nullability</strong></td>
+                        <td>Whether the column accepts <code>NULL</code> values.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key</strong></td>
+                        <td>Whether the column is part of a key or index.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Default</strong></td>
+                        <td>The default value of the column.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Extra</strong></td>
+                        <td>Additional attributes, for example auto increment.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Truncate and drop</h4>
+            <ul>
+                <li><strong>Truncate</strong> removes all records of a table, the table itself remains.</li>
+                <li><strong>Drop</strong> removes the table completely, including its structure.</li>
+            </ul>
+            <div class="danger">
+                <strong>Caution:</strong>
+                Truncating or dropping a table cannot be undone. Never do this with tables of
+                the XOOPS core or of installed modules unless you know exactly what you are doing.
+            </div>
+        </section>
+
+        <section class="card" id="records">
+            <h3>Records</h3>
+            <p>
+                Open a table to browse its records. You can view the details of a single record
+                and, if necessary, edit or delete it.
+            </p>
+            <ul>
+                <li><strong>Browse</strong> – list the records of the selected table.</li>
+                <li><strong>View</strong> – show all values of one record.</li>
+                <li><strong>Edit</strong> – change values of one record.</li>
+                <li><strong>Delete</strong> – remove one record.</li>
+            </ul>
+            <div class="warning">
+                <strong>Important:</strong>
+                Deleting or editing records directly bypasses the logic of the module that owns the data.
+                Related data (for example uploaded files or entries in other tables) is not updated automatically.
+            </div>
+            <p>
+                The number of entries per page in the administration lists can be configured in the
+                module settings.
+            </p>
+        </section>
+
+        <section class="card" id="sql">
+            <h3>SQL Editor</h3>
+            <p>
+                The SQL editor lets you execute SQL statements against the database.
+                For a selected table the available columns can be displayed, which helps when
+                writing statements.
+            </p>
+            <ol class="steps">
+                <li>Open the SQL editor.</li>
+                <li>Select a table to see its columns, if needed.</li>
+                <li>Enter your SQL statement.</li>
+                <li>Check the statement carefully.</li>
+                <li>Execute the statement.</li>
+            </ol>
+            <div class="danger">
+                <strong>Caution:</strong>
+                Statements such as <code>UPDATE</code>, <code>DELETE</code>, <code>TRUNCATE</code>
+                or <code>DROP</code> change data permanently. Always create a backup first and
+                test statements on a copy of your site whenever possible.
+            </div>
+        </section>
+
+        <section class="card" id="language-checker">
+            <h3>Language Checker</h3>
+            <p>
+                The language checker helps developers to keep the language files of a module clean.
+                It scans the English language definitions of a selected module and checks whether
+                each definition is used elsewhere in that module.
+            </p>
+            <h4>How to use</h4>
+            <ol>
+                <li>Open the language checker.</li>
+                <li>Select the module you want to check.</li>
+                <li>Choose whether all results or only warnings should be displayed.</li>
+                <li>Start the check and review the result.</li>
+            </ol>
+            <h4>Display options</h4>
+            <ul>
+                <li><strong>All results</strong> – show every checked language definition.</li>
+                <li><strong>Warnings only</strong> – show only definitions that need attention.</li>
+            </ul>
+            <div class="info">
+                The checker uses the files in <code>language/english</code> of the selected module as its source.
+                Constants that are built dynamically at runtime may be reported as unused even though they
+                are needed. Please review the results before removing anything.
+            </div>
+        </section>
+
+        <section class="card" id="settings">
+            <h3>Module Settings</h3>
+            <p>
+                The module configuration can be accessed through the XOOPS
+                module administration.
+            </p>
+            <h4>Administration</h4>
+            <ul>
+                <li><strong>Pagination</strong> – number of items per page in administration lists (10, 25, 50 or 100).</li>
+                <li><strong>Dashboard feedback</strong> – show or hide the feedback information on the dashboard.</li>
+            </ul>
+            <h4>Meta information</h4>
+            <ul>
+                <li><strong>Meta description</strong> – description used for the module.</li>
+                <li><strong>Keywords</strong> – keywords associated with the module.</li>
+            </ul>
+        </section>
+
+        <section class="card" id="permissions">
+            <h3>Permissions &amp; Security</h3>
+            <p>
+                wgDeveloper is an administrator tool. Access to the module should be limited to
+                trusted users with appropriate XOOPS administration permissions.
+            </p>
+            <div class="warning">
+                <strong>Security recommendation:</strong>
+                Do not grant access to wgDeveloper to untrusted user groups. The module exposes
+                low-level database operations. If you only need it temporarily, consider
+                deactivating or uninstalling the module on production sites after use.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Typical Use Cases</h3>
+            <p>wgDeveloper can be used for many different maintenance and development tasks:</p>
+            <ul>
+                <li>Checking the structure of a database table</li>
+                <li>Looking up the content of a record</li>
+                <li>Fixing a single wrong value in a record</li>
+                <li>Emptying a table during development or testing</li>
+                <li>Cleaning up tables left over from removed modules</li>
+                <li>Running a quick SQL query</li>
+                <li>Finding unused language constants in a module</li>
+                <li>Finding missing language constants in a module</li>
+            </ul>
+        </section>
+
+        <section class="card" id="troubleshooting">
+            <h3>Troubleshooting</h3>
+
+            <h4>The module is not visible in the administration</h4>
+            <ul>
+                <li>Check that the module is installed and active.</li>
+                <li>Check that the directory is named <code>wgdeveloper</code>.</li>
+                <li>Check the administration permissions of your user group.</li>
+                <li>Clear the XOOPS cache if necessary.</li>
+            </ul>
+
+            <h4>An SQL statement fails</h4>
+            <ul>
+                <li>Check the syntax of the statement.</li>
+                <li>Check the table and column names, including the table prefix.</li>
+                <li>Check whether the database user has the required rights.</li>
+            </ul>
+
+            <h4>The language checker shows unexpected results</h4>
+            <ul>
+                <li>Check that the selected module has a <code>language/english</code> folder.</li>
+                <li>Check whether constants are built dynamically in the module code.</li>
+                <li>Switch between "all results" and "warnings only" to compare.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>Installation &amp; Requirements</h3>
+            <p>
+                wgDeveloper is a XOOPS module and uses the standard XOOPS module
+                installation and update mechanism.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Minimum Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>XOOPS</td>
+                        <td>2.7.3</td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td>8.4</td>
+                    </tr>
+                    <tr>
+                        <td>ModuleAdmin</td>
+                        <td>1.2</td>
+                    </tr>
+                    <tr>
+                        <td>MySQL / MySQLi</td>
+                        <td>5.6</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ol class="steps">
+                <li>Download or clone the repository.</li>
+                <li>Make sure the module directory is named <code>wgdeveloper</code>.</li>
+                <li>Copy the directory into the <code>modules</code> folder of your XOOPS installation.</li>
+                <li>Open <strong>Administration → Modules</strong> and install <strong>wgDeveloper</strong>.</li>
+                <li>Open the module's administration area.</li>
+            </ol>
+            <div class="warning">
+                <strong>Updating:</strong>
+                Before updating an existing installation, back up the database and the module files,
+                then follow the normal XOOPS module update procedure.
+            </div>
+        </section>
+
+        <section class="card" id="support">
+            <h3>Support &amp; Development</h3>
+            <p>
+                wgDeveloper is developed by
+                <strong>Goffy – Wedega</strong>
+                for the XOOPS environment.
+            </p>
+            <p>
+                For support, bug reports and development discussions, please use
+                the XOOPS community resources.
+            </p>
+            <p>
+                <strong>Project:</strong>
+                <a href="https://github.com/XoopsModules27x/wgdeveloper" target="_blank" rel="noopener">GitHub – XoopsModules27x/wgdeveloper</a>
+            </p>
+            <p>
+                <strong>XOOPS Support:</strong>
+                <a href="https://xoops.org/modules/newbb" target="_blank" rel="noopener">XOOPS Support Forum</a>
+            </p>
+            <p>
+                <strong>Author:</strong>
+                Goffy – Wedega<br>
+                <strong>Website:</strong>
+                <a href="https://xoops.wedega.com" target="_blank" rel="noopener">xoops.wedega.com</a>
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>License</h3>
+            <p>
+                wgDeveloper is released under the
+                <strong>GNU General Public License, version 2.0 or later</strong>.
+            </p>
+            <p>
+                Please refer to the source code and license information included
+                with the module for the complete license terms.
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>
+                wgDeveloper · Administration &amp; Development Utilities for XOOPS
+            </p>
+        </footer>
+
+    </div>
 </div>
