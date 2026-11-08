@@ -1,0 +1,257 @@
+@charset "UTF-8";
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * wgDeveloper module for xoops
+ *
+ * @copyright    2026 XOOPS Project (https://xoops.org)
+ * @license      GPL 2.0 or later
+ * @package      wgdeveloper
+ * @author       Goffy - Wedega Webdesign Gabor - Email:webmaster@wedega.com - Website:https://xoops.wedega.com
+ */
+img {
+    max-width: 200px;
+}
+
+.wgd-row {
+    display: flex;
+    align-items: flex-start;
+}
+.wgd-left {
+    width: 220px;
+    box-sizing: border-box;
+}
+.wgd-right {
+    width: 100%;
+    box-sizing: border-box;
+}
+.wdg-info {
+    font-size: 80%;
+    color: var(--text-secondary);
+    padding: 10px 16px;
+}
+/* --- Tabs --- */
+.wgd-tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+.wgd-tab-btn {
+    padding: 8px 16px;
+    cursor: pointer;
+    background: #f2f2f2;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin-right: 4px;
+    border-radius: 4px 4px 0 0;
+    font-weight: normal;
+}
+.wgd-tab-btn.active {
+    background: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+}
+.wgd-tab-content {
+    display: none;
+}
+.wgd-tab-content.active {
+    display: block;
+}
+.wgd-form form {
+    width:300px;
+}
+.wgdeveloper-form-header {
+    font-size:120%;
+    font-weight: 700;
+    margin:0;
+    padding:0;
+    text-align:center;
+    line-height: 1;
+}
+
+/* Details modal overlay */
+.wgd-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 15px;
+    overflow-y: auto;
+}
+.wgd-modal.show {
+    display: block;
+}
+/* Modal window */
+.wgd-modal-dialog {
+    background: #fff;
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+/* Modal header */
+.wgd-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+.wgd-modal-header h3 {
+    margin: 0;
+}
+.wgd-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+}
+/* Modal content */
+.wgd-modal-body {
+    padding: 20px;
+}
+.wgd-modal-body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.wgd-modal-body th,
+.wgd-modal-body td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+.wgd-modal-body th {
+    width: 30%;
+    background: #f5f5f5;
+}
+/* Details button */
+.wgd-details-btn {
+    cursor: pointer;
+}
+.disabled-link {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+    text-decoration: none;
+}
+.wdg-buttons-bar {
+    text-align: center;
+    border-top:1px solid grey;
+    width:100%;
+    margin-top:20px;
+    padding-top:20px;
+}
+.wgd-buttons a,
+.wgd-buttons button {
+    padding: 6px 6px !important;
+}
+
+/* support of theme modern/dark-mode */
+.dark-mode .wgd-tab-btn {
+    background-color: #1e293b !important;
+}
+.dark-mode .wgd-tab-btn.active {
+    background-color: #475569 !important;
+}
+
+/* tab database sql */
+#sql_code {
+    width:100%;
+}
+.sql_button {
+    margin-top:30px;
+}
+.errorSQL {
+    border:1px solid #ff0000;
+    padding:15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.errorSQL p {
+    color: #ff0000;
+    font-weight: bold;
+}
+.sqlcode {
+    border:1px solid grey;
+    border-radius: 10px;
+    padding:10px;
+    margin-top:0;
+    margin-bottom:20px;
+}
+.successSQL {
+    border:1px solid green;
+    padding:10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+.sql-container {
+    display: flex;
+    gap: 10px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.sql-container.is-visible {
+    max-height: 2000px;
+    opacity: 1;
+}
+.sql-container .left {
+    flex: 4;
+    min-width: 0;
+}
+.sql-container .left h3 {
+    text-align: center;
+    padding:10px;
+}
+.sql-container .right {
+    flex: 1;
+    min-width: 0;
+}
+.sql-container .right h3{
+    border-bottom:1px solid grey;
+}
+.sql-container .right ul{
+    padding-left:20px;
+}
+@media (max-width: 768px) {
+    .sql-container {
+        flex-direction: column;
+    }
+    .sql-container .left,
+    .sql-container .right {
+        width: 100%;
+    }
+}
+.sql-container-col {
+    margin-bottom:5px !important;
+}
+.sql-container-col thead tr th,
+.sql-container-col tbody tr td {
+    padding:2px 5px !important;
+}
+.sql-column-name {
+    cursor: copy;
+}
+.sql-column-name:hover {
+    background-color: #dceeff;
+    text-decoration: underline;
+}
+.hr-sqlcode {
+    margin-top:30px;
+    margin-bottom: 10px;
+}
