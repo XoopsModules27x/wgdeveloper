@@ -174,7 +174,6 @@ switch ($op) {
                 $resultCheck[\basename($foundLang)][] = ['define' => $constKey, 'found' => $foundMod, 'first' => $first];
             }
             $GLOBALS['xoopsTpl']->assign('clresults', $resultCheck);
-
         }
         break;
 }

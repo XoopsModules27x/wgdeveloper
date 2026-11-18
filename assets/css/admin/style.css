@@ -176,12 +176,10 @@ img {
     --dt-order-arrow_opacity-current: 1;    /* aktive Richtung (Standard 0.65) */
 }
 
-/* Dark-Mode: helle Pfeile */
+/* Dark-Mode: */
 body.dark-mode {
     --dt-order-arrow_color: #fff;
     --dt-order-arrow_color-current: #fff;
-}
-body.dark-mode {
     --dt-header_border: 1px solid rgb(89, 91, 94);
     --dt-body_border: 1px solid rgb(64, 67, 70);
     --dt-row_background-stripe: 255, 255, 255;

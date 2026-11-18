@@ -75,10 +75,10 @@
         </div>
         <div class="wgd-right">
             <h3 class="center">
-                <{if $clresults|default:''}>
-                <{$smarty.const._WGDEVELOPER_CHECKLANG_RESULTS}>
+                <{if $mod_selected|default:false}>
+                    <{$smarty.const._WGDEVELOPER_CHECKLANG_RESULTS}>
                 <{else}>
-                <{$smarty.const._WGDEVELOPER_CHECKLANG_NO_MODULE}>
+                    <{$smarty.const._WGDEVELOPER_CHECKLANG_NO_MODULE}>
                 <{/if}>
             </h3>
             <{if $mod_selected|default:false}>
