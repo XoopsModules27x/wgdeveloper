@@ -58,6 +58,8 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGDEVELOPER_DB_SQL_SHOW', 'Show SQL Editor');
 \define('_AM_WGDEVELOPER_DB_SQL_HIDE', 'Hide SQL Editor');
 // check language defines
+\define('_WGDEVELOPER_CHECKLANG_EXEC', 'Execute check');
+\define('_WGDEVELOPER_CHECKLANG_RE_EXEC', 'Execute check again');
 \define('_WGDEVELOPER_CHECKLANG_SHOW_ALL', 'Show all');
 \define('_WGDEVELOPER_CHECKLANG_SHOW_WARNINGS', 'Show only warnings');
 \define('_WGDEVELOPER_CHECKLANG_DEFINE', 'Define');
