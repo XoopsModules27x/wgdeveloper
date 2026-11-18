@@ -91,8 +91,8 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 // Meta descrition
 $modversion['config'][] = [
     'name'        => 'metadescription',
-    'title'       => '\_MI_WGDEVELOPER_MDESC',
-    'description' => '\_MI_WGDEVELOPER_MDESC_DESC',
+    'title'       => '_MI_WGDEVELOPER_MDESC',
+    'description' => '_MI_WGDEVELOPER_MDESC_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => \_MI_WGDEVELOPER_DESC,
@@ -100,8 +100,8 @@ $modversion['config'][] = [
 // Meta Keywords
 $modversion['config'][] = [
     'name'        => 'keywords',
-    'title'       => '\_MI_WGDEVELOPER_KEYWORDS',
-    'description' => '\_MI_WGDEVELOPER_KEYWORDS_DESC',
+    'title'       => '_MI_WGDEVELOPER_KEYWORDS',
+    'description' => '_MI_WGDEVELOPER_KEYWORDS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'wgdeveloper, database',
@@ -109,8 +109,8 @@ $modversion['config'][] = [
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
-    'title'       => '\_MI_WGDEVELOPER_ADMIN_PAGER',
-    'description' => '\_MI_WGDEVELOPER_ADMIN_PAGER_DESC',
+    'title'       => '_MI_WGDEVELOPER_ADMIN_PAGER',
+    'description' => '_MI_WGDEVELOPER_ADMIN_PAGER_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 10,

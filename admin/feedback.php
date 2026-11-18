@@ -60,12 +60,12 @@ switch ($op) {
         $fb_content = Request::getText('fb_content');
         $fb_content = \str_replace(["\r\n", "\n", "\r"], '<br>', $fb_content); //clean line break from dhtmltextarea
 
-        $title       = \constant('_CO_WGDEVELOPER_FB_SEND_FOR') . $GLOBALS['xoopsModule']->getVar('dirname');
-        $body        = \constant('_CO_WGDEVELOPER_FB_NAME') . ': ' . $your_name . '<br>';
-        $body        .= \constant('_CO_WGDEVELOPER_FB_MAIL') . ': ' . $your_mail . '<br>';
-        $body        .= \constant('_CO_WGDEVELOPER_FB_SITE') . ': ' . $your_site . '<br>';
-        $body        .= \constant('_CO_WGDEVELOPER_FB_TYPE') . ': ' . $fb_type . '<br><br>';
-        $body        .= \constant('_CO_WGDEVELOPER_FB_TYPE_CONTENT') . ':<br>';
+        $title       = \_CO_WGDEVELOPER_FB_SEND_FOR . $GLOBALS['xoopsModule']->getVar('dirname');
+        $body        = \_CO_WGDEVELOPER_FB_NAME . ': ' . $your_name . '<br>';
+        $body        .= \_CO_WGDEVELOPER_FB_MAIL . ': ' . $your_mail . '<br>';
+        $body        .= \_CO_WGDEVELOPER_FB_SITE . ': ' . $your_site . '<br>';
+        $body        .= \_CO_WGDEVELOPER_FB_TYPE . ': ' . $fb_type . '<br><br>';
+        $body        .= \_CO_WGDEVELOPER_FB_TYPE_CONTENT . ':<br>';
         $body        .= $fb_content;
         $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
@@ -87,7 +87,7 @@ switch ($op) {
         $feedback->type    = $fb_type;
         $feedback->content = $fb_content;
         echo '<div style="text-align:center;width: 80%; padding: 10px; border: 2px solid #ff0000; color: #ff0000; margin-right:auto;margin-left:auto;">
-            <h3>' . \constant('_CO_WGDEVELOPER_FB_SEND_ERROR') . '</h3>
+            <h3>' . \_CO_WGDEVELOPER_FB_SEND_ERROR . '</h3>
             </div>';
         $form = $feedback->getFormFeedback();
         $form->display();

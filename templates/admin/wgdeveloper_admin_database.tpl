@@ -1,4 +1,8 @@
+<style>
 
+
+
+</style>
 <!-- Header -->
 <{include file='db:wgdeveloper_admin_header.tpl' }>
 

@@ -17,6 +17,7 @@
  * @package      wgdeveloper
  * @author       Goffy - Wedega Webdesign Gabor - Email:webmaster@wedega.com - Website:https://xoops.wedega.com
  */
+
 img {
     max-width: 200px;
 }
@@ -26,7 +27,7 @@ img {
     align-items: flex-start;
 }
 .wgd-left {
-    width: 220px;
+    width: 300px;
     box-sizing: border-box;
 }
 .wgd-right {
@@ -166,6 +167,29 @@ img {
 }
 .dark-mode .wgd-tab-btn.active {
     background-color: #475569 !important;
+}
+
+/* modern/dark-mode DataTables */
+/* Sortier-Symbole: Deckkraft in beiden Modi erhöhen */
+:root {
+    --dt-order-arrow_opacity: 0.5;          /* inaktive Richtung (Standard 0.125) */
+    --dt-order-arrow_opacity-current: 1;    /* aktive Richtung (Standard 0.65) */
+}
+
+/* Dark-Mode: helle Pfeile */
+body.dark-mode {
+    --dt-order-arrow_color: #fff;
+    --dt-order-arrow_color-current: #fff;
+}
+body.dark-mode {
+    --dt-header_border: 1px solid rgb(89, 91, 94);
+    --dt-body_border: 1px solid rgb(64, 67, 70);
+    --dt-row_background-stripe: 255, 255, 255;
+    --dt-row_background-hover: 255, 255, 255;
+    --dt-column-ordering_background: 255, 255, 255;
+    --dt-input_border: 1px solid rgb(255, 255, 255, 0.2);
+    --dt-input_background: rgb(44, 48, 51);
+    --dt-paging-button_color-disabled: rgba(255, 255, 255, 0.25);
 }
 
 /* tab database sql */
